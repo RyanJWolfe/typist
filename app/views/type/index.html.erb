@@ -1,5 +1,15 @@
-<div class="centered-container h-screen">
-  <div class="flex h-1/2 justify-center items-center">
-    <%= @text %>
+<div data-controller="type" class="centered-container h-screen max-w-xl">
+  <div class="flex flex-col space-y-6 h-1/2 justify-center">
+    <h2 class="text-4xl text-center f">Typing test</h2>
+    <hr class="divider py-4"/>
+    <div class="text-gray-400"><%= @text %></div>
+    <div class="w-full">
+      <textarea type="text" rows="3" autofocus class="type-test-input" placeholder="Type here to begin test.."></textarea>
+      <i></i>
+    </div>
+    <div class="">
+      <p>Time: <span id="timer">0s</span></p>
+      <p>Mistakes: <span id="mistakes">0</span></p>
+    </div>
   </div>
 </div>
