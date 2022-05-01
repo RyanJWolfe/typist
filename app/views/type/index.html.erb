@@ -4,7 +4,13 @@
     <hr class="divider py-4"/>
     <div class="text-gray-400"><%= @text %></div>
     <div class="w-full">
-      <textarea type="text" rows="3" autofocus class="type-test-input" placeholder="Type here to begin test.."></textarea>
+      <textarea type="text"
+                data-action="type#inputChanged"
+                rows="3"
+                autofocus
+                autocomplete="off"
+                class="type-test-input"
+                placeholder="Type here to begin test.."></textarea>
       <i></i>
     </div>
     <div class="">
