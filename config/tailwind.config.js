@@ -10,6 +10,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'light-goldenrod-yellow': '#faf8d4',
+        'almond': '#ebdccb',
+        'bone': '#d7cbbb',
+        'pale-silver': '#c3baaa',
+        'rocket-metallic': '#91818a',
+        'heliotrope-gray': '#b2a3b5',
         'primary': {
           50: '#fbfaf9',
           100: '#F4F3F3',
