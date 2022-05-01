@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   get '/calendar/week', to: 'calendar#week'
   get '/calendar/month', to: 'calendar#month'
   get '/calendar/day', to: 'calendar#day'
+
+  get '/about', to: 'about#index'
+  get '/contact', to: 'contact#index'
 end
