@@ -15,7 +15,3 @@ Things you may want to cover:
 
 * Run locally
     - `make local`
-
-
-* Template Setup
-    - Rename all usages of 'template' and 'Template' with the app name 
