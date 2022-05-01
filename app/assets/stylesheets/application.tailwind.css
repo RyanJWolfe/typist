@@ -20,7 +20,7 @@
 
 @layer components {
     .body {
-        @apply bg-primary-100 text-black
+        @apply bg-bone text-black
     }
     .divider {
         @apply w-full border-t border-gray-600
