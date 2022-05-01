@@ -82,6 +82,5 @@ end
 
 gem 'devise'
 gem 'dotenv-rails', groups: %i[development test] # For local environment variables
-gem 'font_awesome5_rails'
 gem 'simple_calendar'
 gem 'view_component'
