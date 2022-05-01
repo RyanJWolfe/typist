@@ -1,0 +1,13 @@
+<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+  <div class="container flex justify-between items-center mx-auto">
+    <a href="/" class="flex">
+      <div class="text-center">
+        <h2 class="self-center text-2xl md:text-4xl font-light whitespace-nowrap text-black uppercase">Rails</h2>
+        <p class="text-xs md:text-sm uppercase font-extralight">Template</p>
+      </div>
+    </a>
+    <%= render 'layouts/navbar/user_menu' if user_signed_in? %>
+    <%= render 'layouts/navbar/navbar_login' unless user_signed_in? %>
+    <%= render 'layouts/navbar/menu' %>
+  </div>
+</nav>

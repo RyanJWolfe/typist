@@ -1,0 +1,64 @@
+<div class="flex space-x-4 ml-2 mb-4">
+  <% if view == 'month' %>
+    <%= button_to calendar_month_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-500 hover:text-primary-300" do %>
+      <%= fa_icon('calendar-alt', type: :solid, size: '2x') %>
+    <% end %>
+    <%= button_to calendar_week_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-900 hover:text-primary-500" do %>
+      <%= fa_icon('calendar-week', type: :solid, size: '2x') %>
+    <% end %>
+    <%= button_to calendar_day_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-900 hover:text-primary-500" do %>
+      <%= fa_icon('calendar-day', type: :solid, size: '2x') %>
+    <% end %>
+  <% end %>
+
+  <% if view == 'week' %>
+    <%= button_to calendar_month_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-900 hover:text-primary-500" do %>
+      <%= fa_icon('calendar-alt', type: :solid, size: '2x') %>
+    <% end %>
+    <%= button_to calendar_week_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-500 hover:text-primary-300" do %>
+      <%= fa_icon('calendar-week', type: :solid, size: '2x') %>
+    <% end %>
+    <%= button_to calendar_day_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-900 hover:text-primary-500" do %>
+      <%= fa_icon('calendar-day', type: :solid, size: '2x') %>
+    <% end %>
+  <% end %>
+
+  <% if view == 'day' %>
+    <%= button_to calendar_month_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-900 hover:text-primary-500" do %>
+      <%= fa_icon('calendar-alt', type: :solid, size: '2x') %>
+    <% end %>
+    <%= button_to calendar_week_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-900 hover:text-primary-500" do %>
+      <%= fa_icon('calendar-week', type: :solid, size: '2x') %>
+    <% end %>
+    <%= button_to calendar_day_path,
+                  data: { turbo_frame: 'calendar' },
+                  method: :get,
+                  class: "text-primary-500 hover:text-primary-300" do %>
+      <%= fa_icon('calendar-day', type: :solid, size: '2x') %>
+    <% end %>
+  <% end %>
+</div>

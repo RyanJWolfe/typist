@@ -1,0 +1,10 @@
+<div class="flex space-x-3 items-center md:order-2 md:space-x-2">
+  <%= render 'layouts/navbar/mobile_menu_button' %>
+  <div class="relative">
+    <button data-action="click->menu#toggleUserMenu" type="button" class="navbar-btn" id="user-menu-button" aria-haspopup="true" aria-expanded="false" type="button">
+      <span class="sr-only">Open user menu</span>
+      <%= fa_icon('circle', type: :solid, size: '2x') %>
+    </button>
+    <%= render 'layouts/navbar/user_menu_dropdown' %>
+  </div>
+</div>

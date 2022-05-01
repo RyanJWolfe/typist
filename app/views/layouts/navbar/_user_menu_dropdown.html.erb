@@ -1,0 +1,17 @@
+<div data-menu-target="userDropdown" class="hidden absolute right-0 navbar-dropdown" id="dropdown" aria-orientation="vertical" aria-labelledby="user-menu-button">
+  <div class="py-3 px-4">
+<!--    <span class="block text-sm text-gray-900 dark:text-white">Profile</span>-->
+    <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400"><%= current_user.email %></span>
+  </div>
+  <ul class="py-1">
+    <li>
+      <%= link_to "Dashboard", user_journals_path(current_user.id), class: "navbar-dropdown-list-item" %>
+    </li>
+    <li>
+      <%= link_to "Settings", '/users/edit',  class: "navbar-dropdown-list-item" %>
+    </li>
+    <% if user_signed_in? %>
+      <%= button_to "Sign out", destroy_user_session_path, :method => :delete, class: "navbar-dropdown-list-item w-full text-left" %>
+    <% end %>
+  </ul>
+</div>

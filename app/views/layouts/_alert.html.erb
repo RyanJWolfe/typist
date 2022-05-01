@@ -1,0 +1,11 @@
+<% flash.each do |type, message| %>
+  <% alert_class = type.to_s %>
+  <%= tag.div data: { controller: "alert",
+                      alert_target: "alert" },
+              class: "w-screen text-center flex justify-between items-center #{alert_class}" do %>
+    <%= message %>
+    <button data-action="click->alert#dismissAlert" type="button" class="py-1 px-2 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">
+      <%= fa_icon('times', type: :solid, size: '2x') %>
+    </button>
+  <% end %>
+<% end %>

@@ -1,0 +1,15 @@
+<footer class="p-3 bg-white shadow flex justify-between items-center md:p-3 dark:bg-gray-800">
+  <span class="text-xs text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com" class="hover:underline" target="_blank">Ryan Wolfe</a>. Just for fun.
+  </span>
+  <ul class="flex flex-wrap items-center">
+    <li class="mr-4 md:mr-6">
+      <%= render 'layouts/linkedin_link_small' %>
+    </li>
+    <li class="mr-4 md:mr-6">
+      <%= render 'layouts/github_link_small' %>
+    </li>
+    <li class="mr-4 md:mr-6">
+      <%= link_to fa_icon('info-circle', class: "hover:text-white"), '/about' %>
+    </li>
+  </ul>
+</footer>

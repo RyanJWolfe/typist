@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "calendar", id: "calendar", class: "w-full" do %>
+  <%= render partial: 'calendar/shared/buttons', locals: { view: 'month'} %>
+  <%= month_calendar do |date| %>
+  <div class="h-14 md:h-24">
+    <%= content_tag(:div, date.day, class: "pt-1 text-center") %>
+  </div>
+  <% end %>
+<% end %>
