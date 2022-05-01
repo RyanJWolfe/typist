@@ -14,11 +14,11 @@
 
   <%= turbo_frame_tag "modal" %>
 
-  <body class="body">
+  <body data-controller="menu" class="body" data-action="click->menu#hide">
     <header class="sticky top-0">
       <%= render 'layouts/navbar/navbar' %>
     </header>
-    <main class="flex flex-col grow ">
+    <main class="flex flex-col grow">
       <%= render 'layouts/alert' %>
       <%= yield %>
     </main>
