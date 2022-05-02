@@ -7,6 +7,7 @@ export default class extends Controller {
   connect() {
     this.gameStarted = false
     this.gameOver = false
+    this.errors = 0
     this.convertTextToSpans()
   }
 
@@ -42,9 +43,8 @@ export default class extends Controller {
       let gameOver = this.handleInputChange(e.target.value)
 
       if (gameOver === true) {
-        console.log("Game over")
         e.target.disabled = true
-        this.displayResults("good job")
+        this.displayResults()
       }
     }
   }
@@ -52,6 +52,7 @@ export default class extends Controller {
   handleInputChange(val) {
     const spans = document.getElementById(`game-text`).getElementsByTagName("span")
     const length = Math.max(val.length, spans.length)
+    this.errors = 0
     for (let i = 0; i < length; i++) {
       if (i < val.length) {
         if (val[i] === spans[i].innerHTML) {
@@ -59,6 +60,7 @@ export default class extends Controller {
         } else {
           spans[i].style.color = "red"
           spans[i].style.textDecoration = "underline"
+          this.errors++
         }
       }
       else if (i < spans.length) {
@@ -71,8 +73,19 @@ export default class extends Controller {
     return val.length === spans.length;
   }
 
-  displayResults(msg) {
-    const event = new CustomEvent("display-results")
+  displayResults() {
+    const event = new CustomEvent("display-results", {
+      "detail": {
+        "wpm": "80",
+        "accuracy": `${this.accuracy}%`
+      }
+    })
     window.dispatchEvent(event)
+  }
+
+  get accuracy() {
+    let totalChars = document.getElementById(`game-text`).getElementsByTagName("span").length
+    console.log(`total chars: ${totalChars}, errors: ${this.errors}`)
+    return ((1 - (this.errors / totalChars)) * 100).toFixed(2)
   }
 }

@@ -4,14 +4,12 @@
                         action: "turbo:submit-end->turbo-modal#submitEnd keyup@window->turbo-modal#closeWithKeyboard" },
               class: "overflow-hidden fixed z-50 w-full h-full bg-primary-900 bg-opacity-75" do %>
     <div class="relative flex p-2 md:p-4 w-full h-full max-h-screen justify-center items-center">
-      <div data-action="click@window->turbo-modal#closeBackground" data-turbo-modal-target="modalContent" class="my-4 align-middle w-full max-h-full p-6 md:p-8 inline-block md:max-w-2xl bg-primary-100 rounded-lg text-left overflow-y-auto no-scrollbar shadow-xl transform transition-all">
-        <div class="flex justify-between items-center">
-          <h1><%= @title %></h1>
-          <button data-action="turbo-modal#hideModal" type="button" class="py-1 px-2 text-gray-800 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">
-            <i class="fas fa-times fa-2x"></i>
-          </button>
-        </div>
-
+      <div data-action="click@window->turbo-modal#closeBackground" data-turbo-modal-target="modalContent" class="flex flex-col items-center my-4 align-middle w-full max-h-full p-6 md:p-8 inline-block md:max-w-xl bg-onyx rounded-lg overflow-y-auto no-scrollbar shadow-xl transform transition-all">
+        <button data-action="turbo-modal#hideModal" type="button" class="py-1 px-2 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-600 self-end">
+          <i class="fas fa-times fa-xl"></i>
+        </button>
+        <br/>
+        <h1 class="font-medium text-xl uppercase mb-4"><%= @title %></h1>
         <%= content %>
       </div>
     </div>
