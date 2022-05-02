@@ -1,13 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
-import { get } from "@rails/request.js"
-
+import Timer from "../helpers/timer";
 
 // Connects to data-controller="type"
 export default class extends Controller {
   connect() {
     this.gameStarted = false
-    this.gameOver = false
     this.errors = 0
+    this.timer = new Timer()
     this.convertTextToSpans()
   }
 
@@ -17,42 +16,41 @@ export default class extends Controller {
     div.innerHTML = ''
 
     text.forEach((char, index) => {
-
       const node = document.createElement(`span`); // create new span element
       const textnode = document.createTextNode(char);  // create character as text node for span element
-
       node.appendChild(textnode); // add text to span
-
-      // if you want only to style characters only in the word `GRID`
-      // if(index >= text.length - `GRID`.length){
-      //
-      //   // style the characters however you want to
-      //   node.style.color = index % 2 === 0 ? `red` : `black`; // change color
-      //   node.style.fontWeight = index % 2 !== 0 ? 900 : 1; // change font weight
-      // }
       div.appendChild(node); // add span (character) to the div element in HTML
     });
   }
 
   inputChanged(e) {
-    console.log(e)
     if (e.target.value != null && this.gameStarted === false) {
+      this.errors = 0
       this.gameStarted = true
+      this.timer.start()
     }
     if (this.gameStarted === true) {
-      let gameOver = this.handleInputChange(e.target.value)
+      let gameOver = this.handleInputChange(e.target.value, e.inputType)
 
       if (gameOver === true) {
+        this.timer.stop()
         e.target.disabled = true
         this.displayResults()
       }
     }
   }
 
-  handleInputChange(val) {
+  handleInputChange(val, actionType) {
     const spans = document.getElementById(`game-text`).getElementsByTagName("span")
     const length = Math.max(val.length, spans.length)
-    this.errors = 0
+    let index = val.length - 1
+
+    if (index < spans.length) {
+      if (val[index] !== spans[index].innerHTML && actionType !== "deleteContentBackward") {
+        this.errors++
+      }
+    }
+
     for (let i = 0; i < length; i++) {
       if (i < val.length) {
         if (val[i] === spans[i].innerHTML) {
@@ -60,7 +58,6 @@ export default class extends Controller {
         } else {
           spans[i].style.color = "red"
           spans[i].style.textDecoration = "underline"
-          this.errors++
         }
       }
       else if (i < spans.length) {
@@ -76,7 +73,7 @@ export default class extends Controller {
   displayResults() {
     const event = new CustomEvent("display-results", {
       "detail": {
-        "wpm": "80",
+        "wpm": this.wpm,
         "accuracy": `${this.accuracy}%`
       }
     })
@@ -84,8 +81,18 @@ export default class extends Controller {
   }
 
   get accuracy() {
-    let totalChars = document.getElementById(`game-text`).getElementsByTagName("span").length
-    console.log(`total chars: ${totalChars}, errors: ${this.errors}`)
-    return ((1 - (this.errors / totalChars)) * 100).toFixed(2)
+    return ((1 - (this.errors / this.gameCharLength)) * 100).toFixed(2)
+  }
+
+  get wpm() {
+    return Math.round((this.gameCharLength / 5) / (this.millisToMinutes(this.timer.overallTime)))
+  }
+
+  get gameCharLength() {
+    return document.getElementById(`game-text`).getElementsByTagName("span").length
+  }
+
+  millisToMinutes(ms) {
+    return (ms / 60000)
   }
 }

@@ -86,3 +86,4 @@ gem 'simple_calendar'
 gem 'view_component'
 
 gem 'requestjs-rails'
+gem 'faker'
