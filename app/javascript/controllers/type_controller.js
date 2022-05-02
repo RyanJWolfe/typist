@@ -1,4 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
+import { get } from "@rails/request.js"
+
 
 // Connects to data-controller="type"
 export default class extends Controller {
@@ -42,6 +44,7 @@ export default class extends Controller {
       if (gameOver === true) {
         console.log("Game over")
         e.target.disabled = true
+        this.displayResults("good job")
       }
     }
   }
@@ -66,5 +69,10 @@ export default class extends Controller {
 
     // Game is over when input length matches the game text length
     return val.length === spans.length;
+  }
+
+  displayResults(msg) {
+    const event = new CustomEvent("display-results")
+    window.dispatchEvent(event)
   }
 }

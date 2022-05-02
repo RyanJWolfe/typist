@@ -17,5 +17,10 @@
       <p>Time: <span id="timer">0s</span></p>
       <p>Mistakes: <span id="mistakes">0</span></p>
     </div>
+    <div data-controller="result-popup">
+      <%= link_to '', results_path, data: { turbo_frame: 'modal',
+                                            result_popup_target: 'link',
+                                            action: "display-results@window->result-popup#update" } %>
+    </div>
   </div>
 </div>
