@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import {Controller} from "@hotwired/stimulus"
 import Timer from "../helpers/timer";
 
 // Connects to data-controller="type"
@@ -28,6 +28,9 @@ export default class extends Controller {
       this.errors = 0
       this.gameStarted = true
       this.timer.start()
+      setInterval(() => {
+        document.getElementById('timer').innerText = (this.timer.getTime()/1000).toString();
+      }, 100)
     }
     if (this.gameStarted === true) {
       let gameOver = this.handleInputChange(e.target.value, e.inputType)
@@ -81,11 +84,13 @@ export default class extends Controller {
   }
 
   get accuracy() {
+    console.log(this.errors)
+    console.log(this.gameCharLength)
     return ((1 - (this.errors / this.gameCharLength)) * 100).toFixed(2)
   }
 
   get wpm() {
-    return Math.round((this.gameCharLength / 5) / (this.millisToMinutes(this.timer.overallTime)))
+    return Math.round((this.gameCharLength / 5) / (this.millisToMinutes(this.timer.getTime())))
   }
 
   get gameCharLength() {

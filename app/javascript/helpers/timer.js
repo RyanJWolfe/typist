@@ -32,4 +32,27 @@ export default class Timer {
 
         this.overallTime = this.overallTime + this._getTimeElapsedSinceLastStart();
     }
+
+    reset() {
+        this.overallTime = 0;
+
+        if (this.isRunning) {
+            this.startTime = Date.now();
+            return;
+        }
+
+        this.startTime = 0;
+    }
+
+    getTime() {
+        if (!this.startTime) {
+            return 0;
+        }
+
+        if (this.isRunning) {
+            return this.overallTime + this._getTimeElapsedSinceLastStart();
+        }
+
+        return this.overallTime;
+    }
 }
