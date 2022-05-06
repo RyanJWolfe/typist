@@ -10,7 +10,7 @@ export default class extends Controller {
     }
   }
 
-  async update(e) {
+  async update(event) {
     if (this.hasLinkTarget) {
       this.linkTarget.click()
     }
@@ -19,8 +19,8 @@ export default class extends Controller {
       await this.frameElement.loaded
     }
 
-    document.getElementById("accuracy").innerText = e.detail.accuracy
-    document.getElementById("wpm").innerText = e.detail.wpm
+    document.getElementById("accuracy").innerText = event.detail.accuracy
+    document.getElementById("wpm").innerText = event.detail.wpm
   }
 
   // Private
