@@ -8,6 +8,7 @@ export default class extends Controller {
     this.errors = 0
     this.timer = new Timer()
     this.convertTextToSpans()
+    this.spans[0].style.textDecoration = 'underline'
   }
 
   convertTextToSpans() {
@@ -44,9 +45,9 @@ export default class extends Controller {
   }
 
   handleInputChange(val, actionType) {
-    const spans = document.getElementById(`game-text`).getElementsByTagName("span")
+    let spans = this.spans
     const length = Math.max(val.length, spans.length)
-    let index = val.length - 1
+    let index = (val.length === 0) ? 0 : val.length - 1
 
     if (index < spans.length) {
       if (val[index] !== spans[index].innerHTML && actionType !== "deleteContentBackward") {
@@ -58,6 +59,7 @@ export default class extends Controller {
       if (i < val.length) {
         if (val[i] === spans[i].innerHTML) {
           spans[i].style.color = "white"
+          spans[i].style.textDecoration = ''
         } else {
           spans[i].style.color = "red"
           spans[i].style.textDecoration = "underline"
@@ -68,6 +70,10 @@ export default class extends Controller {
         spans[i].style.textDecoration = ''
       }
     }
+
+    let cursor_index = (index === 0) ? 0 : index + 1
+    if (cursor_index < spans.length - 1)
+      spans[cursor_index].style.textDecoration = 'underline'
 
     // Game is over when input length matches the game text length
     return val.length === spans.length;
@@ -95,6 +101,10 @@ export default class extends Controller {
 
   get gameCharLength() {
     return document.getElementById(`game-text`).getElementsByTagName("span").length
+  }
+
+  get spans() {
+    return document.getElementById(`game-text`).getElementsByTagName("span")
   }
 
   millisToMinutes(ms) {
