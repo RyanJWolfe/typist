@@ -21,6 +21,7 @@ export default class extends Controller {
 
     document.getElementById("accuracy").innerText = event.detail.accuracy
     document.getElementById("wpm").innerText = event.detail.wpm
+    document.getElementById("time-elapsed").innerText = event.detail.timeElapsed
   }
 
   // Private

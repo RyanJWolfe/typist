@@ -85,7 +85,8 @@ export default class extends Controller {
     const event = new CustomEvent("display-results", {
       "detail": {
         "wpm": this.wpm,
-        "accuracy": `${this.accuracy}%`
+        "accuracy": `${this.accuracy}%`,
+        "timeElapsed": this.timer.getTime()/1000
       }
     })
     window.dispatchEvent(event)
