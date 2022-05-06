@@ -19,6 +19,9 @@ export default class extends Controller {
     div.innerHTML = ''
 
     text.forEach((char, index) => {
+      const regex = /(\'|\‘|\’)/gm;
+      if (char.search(regex) !== -1)
+        char = "'"
       const node = document.createElement(`span`); // create new span element
       const textnode = document.createTextNode(char);  // create character as text node for span element
       node.appendChild(textnode); // add text to span
