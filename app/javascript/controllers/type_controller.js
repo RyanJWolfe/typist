@@ -3,6 +3,8 @@ import Timer from "../helpers/timer";
 
 // Connects to data-controller="type"
 export default class extends Controller {
+  static targets = ["input"]
+
   connect() {
     this.gameStarted = false
     this.errors = 0
@@ -92,7 +94,16 @@ export default class extends Controller {
   get accuracy() {
     console.log(this.errors)
     console.log(this.gameCharLength)
-    return ((1 - (this.errors / this.gameCharLength)) * 100).toFixed(2)
+    let errors = 0
+    const spans = this.spans
+    for (let i = 0; i < this.gameCharLength; i++) {
+      if (this.inputTarget.value[i] !== spans[i].innerHTML) {
+        errors++
+      }
+    }
+    if (errors === 0)
+        return (100).toFixed(2)
+    return ((1 - (errors / this.gameCharLength)) * 100).toFixed(2)
   }
 
   get wpm() {
