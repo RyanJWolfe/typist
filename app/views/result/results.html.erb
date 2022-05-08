@@ -1,17 +1,36 @@
 <div class="w-full">
   <%= render TurboModalComponent.new(title: "Statistics") do %>
-    <div class="flex space-x-6">
-      <div class="flex flex-col items-center">
-        <span id="wpm" class="text-2xl"></span>
-        <span class="font-light">WPM</span>
+    <div class="flex flex-col space-y-6 items-center">
+      <div class="flex space-x-6">
+        <div class="flex flex-col items-center">
+          <span id="wpm" class="text-4xl"></span>
+          <span class="font-light text-sm">WPM</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span id="accuracy" class="text-4xl"></span>
+          <span class="font-light text-sm">Accuracy %</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span id="time-elapsed" class="text-4xl"></span>
+          <span class="font-light text-sm">Time (s)</span>
+        </div>
       </div>
-      <div class="flex flex-col items-center">
-        <span id="accuracy" class="text-2xl"></span>
-        <span class="font-light">Accuracy</span>
-      </div>
-      <div class="flex flex-col items-center">
-        <span id="time-elapsed" class="text-2xl"></span>
-        <span class="font-light">Time (s)</span>
+      <div class="flex space-x-4 justify-between content-center items-center">
+        <div class="flex flex-col items-center space-y-2">
+          <span class="font-semibold text-xl uppercase">Play Again?</span>
+          <%= button_to "", class: "text-center text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl", onclick: "window.location.reload();" do %>
+            <i class="fas fa-arrow-rotate-right fa-xl"></i>
+          <% end %>
+        </div>
+        <hr class="border-l border-white" style="border-top-width: 4rem;"/>
+        <div class="text-right">
+          <%= button_tag type: 'button', class: 'btn-purple-blue uppercase px-7.5 font-semibold' do %>
+            <div class="flex space-x-2 content-center items-center">
+              <span class="text-xl">Share</span>
+              <span><i class="fas fa-share-alt fa-xl"></i></span>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

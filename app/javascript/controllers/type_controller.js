@@ -6,6 +6,10 @@ export default class extends Controller {
   static targets = ["input"]
 
   connect() {
+    this.initialize()
+  }
+
+  initialize() {
     this.gameStarted = false
     this.errors = 0
     this.timer = new Timer()
@@ -88,8 +92,8 @@ export default class extends Controller {
     const event = new CustomEvent("display-results", {
       "detail": {
         "wpm": this.wpm,
-        "accuracy": `${this.accuracy}%`,
-        "timeElapsed": this.timer.getTime()/1000
+        "accuracy": `${this.accuracy}`,
+        "timeElapsed": (this.timer.getTime()/1000).toFixed(2)
       }
     })
     window.dispatchEvent(event)
@@ -106,7 +110,7 @@ export default class extends Controller {
       }
     }
     if (errors === 0)
-        return (100).toFixed(2)
+        return (100).toFixed(0)
     return ((1 - (errors / this.gameCharLength)) * 100).toFixed(2)
   }
 
